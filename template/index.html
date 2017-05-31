@@ -1,0 +1,92 @@
+<link rel="style.css" type="text/css"  />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<html>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3 text-center">redditbot</h1>
+    <p class="lead text-center">Add you favorite subreddits and quickly look at them!</p>
+  </div>
+</div>
+<div class="container">
+    <ul class="nav nav-tabs" style="align:center">
+      {% for n in range(subreddits|length) %}
+      {% if n == 0 %}
+      <li class="active"><a data-toggle="tab" href="#{{subreddits[n]}}">{{subreddits[n]}}</a></li>
+      {% else %}
+      <li><a data-toggle="tab" href="#{{subreddits[n]}}">{{subreddits[n]}}</a></li>
+      {% endif %}
+      {% endfor %}
+      <li class="pull-right">
+	<form class="form-inline" action="{{ url_for('home') }}" method="POST">>
+		<div class="form-group row">
+		        <input type="text" class="form-control" name="sub" id="sub" placeholder="Enter sub name...">
+			<input class="btn btn-info col-form-label" type=submit value="Add">
+		</div>
+	</form>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      {% for n in range(subreddits|length) %}
+      {% if n == 0 %}
+      <div id="{{subreddits[n]}}" class="tab-pane fade in active">
+      {% else %}
+      <div id="{{subreddits[n]}}" class="tab-pane fade">
+      {% endif %}
+        <h3>{{subreddits[n]}}</h3>
+        {% for submission in posts[n] %}
+        <div class="comment-tabs">
+          <ul class="media-list">
+            <li class="media">
+              {% if submission.thumbnail.find(".") %}
+              <a class="pull-left" href="#">
+                <img class="media-object" src="{{submission.thumbnail}}">
+              </a>
+              {% endif %}
+              <div class="media-body">
+                <div class="well well-lg">
+                    <a href="{{submission.url}}" class="media-heading text-uppercase reviews">{{submission.title}}  
+			<small class="text-muted"> - {{subreddits[n]}} </small>
+                    <br>
+                    <a class="btn btn-info btn-circle text-uppercase" href="http://reddit.com{{submission.permalink}}" id="reply">
+                      <span class="glyphicon glyphicon-share-alt"></span> Comments
+                    </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div> 
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1" id="login">
+        <div class="page-header">
+            <h3 class="reviews">Leave your comment</h3>
+            <div class="logout">
+                <button class="btn btn-default btn-circle text-uppercase" type="button" onclick="$('#login').hide(); 
+$('#logout').show()">
+                    <span class="glyphicon glyphicon-off"></span> Login
+                </button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  
+  <div class="page-header text-center">
+    <h3 class="reviews"><span class="glyphicon glyphicon-magnet"></span> Uicomments by <a 
+href="https://twitter.com/maridlcrmn">maridlcrmn</a></h3>
+  </div>
+  <div class="notes text-center"><small>Image credits: uifaces.com</small></div>
+</div>
+</html>
+
+
+
