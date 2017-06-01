@@ -40,7 +40,7 @@ def home():
 			print subr.title
 			array = []
 			for submission in subr.hot(limit=10):
-			    print "\t", submission.title
+			    print "\t", submission.title, submission.thumbnail
 			    if(not submission.stickied):
 				array.append(submission)
 			posts.append(array)

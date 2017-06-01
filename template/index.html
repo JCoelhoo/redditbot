@@ -12,7 +12,6 @@
     <p class="lead text-center">Add you favorite subreddits and quickly look at them!</p>
   </div>
 </div>
-<a href="/reset" class="btn btn-link">reset</a>
 <div class="container">
     <div class="wrapper">
 	    <ul style="white-space: nowrap;overflow-x: auto;" class="col-md-9 nav nav-tabs">
@@ -39,27 +38,30 @@
       {% else %}
       <div id="{{subreddits[n]}}" class="tab-pane fade">
       {% endif %}
-        <h3>{{subreddits[n]}}</h3>
-        {% for submission in posts[n] %}
+	<div class="row">
+	        <h3 class="col-md-9">{{subreddits[n]}}</h3>
+		<a href="/reset" class="col-md-3 pull-middle btn btn-link">reset</a>
+        </div>
+	{% for submission in posts[n] %}
         <div class="comment-tabs">
           <ul class="media-list">
             <li class="media">
-              {% if submission.thumbnail.find(".") %}
+              {% if submission.thumbnail.startswith('http') %}
               <a class="pull-left" href="#">
-                <img class="media-object" src="{{submission.thumbnail}}">
+                <img class="media-object" style="width:100px;height:100px" src="{{submission.thumbnail}}">
               </a>
 	      {% else %}
 	      <a class="pull-left" href="http://i.imgur.com/1a7hzx7.png">
-                <img class="media-object" src="http://i.imgur.com/1a7hzx7.png">
+                <img class="media-object" style="width:100px;height:100px" src="http://i.imgur.com/1a7hzx7.png">
               </a>
               {% endif %}
               <div class="media-body">
                 <div class="well well-lg">
-                    <a href="{{submission.url}}" class="media-heading text-uppercase reviews">{{submission.title}}  
-			<small class="text-muted"> - {{subreddits[n]}} </small>
+                    <a href="{{submission.url}}" class="media-heading reviews">{{submission.title}} </a>  
+		    <small class="text-muted"> - <a style="color:black" href="http://reddit.com/r/{{subreddits[n]}}">/r/{{subreddits[n]}}</a> </small>
                     <br>
-                    <a class="btn btn-info btn-circle text-uppercase" href="http://reddit.com{{submission.permalink}}" id="reply">
-                      <span class="glyphicon glyphicon-share-alt"></span> Comments
+                    <a class="btn btn-info btn-circle" href="http://reddit.com{{submission.permalink}}" id="reply">
+                      <span class="glyphicon glyphicon-share-alt"></span> View
                     </a>
                 </div>
               </div>
