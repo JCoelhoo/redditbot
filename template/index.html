@@ -2,6 +2,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{{url_for('static', filename='js.js')}}"></script>
+
 <html>
 
 <div class="jumbotron jumbotron-fluid">
@@ -10,25 +12,26 @@
     <p class="lead text-center">Add you favorite subreddits and quickly look at them!</p>
   </div>
 </div>
+<a href="/reset" class="btn btn-link">reset</a>
 <div class="container">
-    <ul class="nav nav-tabs" style="align:center">
-      {% for n in range(subreddits|length) %}
-      {% if n == 0 %}
-      <li class="active"><a data-toggle="tab" href="#{{subreddits[n]}}">{{subreddits[n]}}</a></li>
-      {% else %}
-      <li><a data-toggle="tab" href="#{{subreddits[n]}}">{{subreddits[n]}}</a></li>
-      {% endif %}
-      {% endfor %}
-      <li class="pull-right">
-	<form class="form-inline" action="{{ url_for('home') }}" method="POST">>
+    <div class="wrapper">
+	    <ul style="white-space: nowrap;overflow-x: auto;" class="col-md-9 nav nav-tabs">
+	      {% for n in range(subreddits|length) %}
+	      {% if n == 0 %}
+	      <li style="display: inline-block;float: none;" class="active"><a data-toggle="tab" href="#{{subreddits[n]}}">{{subreddits[n]}}</a></li>
+	      {% else %}
+	      <li  style="display: inline-block;float: none;"><a data-toggle="tab" href="#{{subreddits[n]}}">{{subreddits[n]}}</a></li>
+	      {% endif %}
+	      {% endfor %}
+	    </ul>
+    </div>
+	<form class="col-md-3 pull-right form-inline" action="{{ url_for('home') }}" method="POST">
 		<div class="form-group row">
 		        <input type="text" class="form-control" name="sub" id="sub" placeholder="Enter sub name...">
 			<input class="btn btn-info col-form-label" type=submit value="Add">
 		</div>
 	</form>
-      </li>
-    </ul>
-
+    </br></br></br>
     <div class="tab-content">
       {% for n in range(subreddits|length) %}
       {% if n == 0 %}
