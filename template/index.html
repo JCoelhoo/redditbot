@@ -57,10 +57,10 @@
               {% endif %}
               <div class="media-body">
                 <div class="well well-lg">
-                    <a href="{{submission.url}}" class="media-heading reviews">{{submission.title}} </a>  
-		    <small class="text-muted"> - <a style="color:black" href="http://reddit.com/r/{{subreddits[n]}}">/r/{{subreddits[n]}}</a> </small>
+                    <a href="{{submission.url}}" target="_blank" class="media-heading reviews">{{submission.title}} </a>  
+		    <small class="text-muted"> - <a style="color:black" target="_blank" href="http://reddit.com/r/{{subreddits[n]}}">/r/{{subreddits[n]}}</a> </small>
                     <br>
-                    <a class="btn btn-info btn-circle" href="http://reddit.com{{submission.permalink}}" id="reply">
+                    <a class="btn btn-info btn-circle" target="_blank" href="http://reddit.com{{submission.permalink}}" id="reply">
                       <span class="glyphicon glyphicon-share-alt"></span> View
                     </a>
                 </div>
@@ -75,25 +75,10 @@
 
 
 <div class="row">
-    <div class="col-sm-10 col-sm-offset-1" id="login">
-        <div class="page-header">
-            <h3 class="reviews">Leave your comment</h3>
-            <div class="logout">
-                <button class="btn btn-default btn-circle text-uppercase" type="button" onclick="$('#login').hide(); 
-$('#logout').show()">
-                    <span class="glyphicon glyphicon-off"></span> Login
-                </button>
-            </div>
-        </div>
-      </div>
-    </div>
-
-  
   <div class="page-header text-center">
-    <h3 class="reviews"><span class="glyphicon glyphicon-magnet"></span> Uicomments by <a 
-href="https://twitter.com/maridlcrmn">maridlcrmn</a></h3>
+    <h3 class="reviews"><img src="https://image.flaticon.com/icons/svg/25/25231.svg" style="height:35px;width:35px" alt="GitHub"></span> Designed by <a 
+href="https://github.com/JCoelhoo">JCoelho</a></h3>
   </div>
-  <div class="notes text-center"><small>Image credits: uifaces.com</small></div>
 </div>
 </html>
 
